@@ -100,6 +100,18 @@ Verify it installed correctly:
 python -c "import pyspark; print(pyspark.**version**)"
 ```
 
+---
+
+## Checkpoint complete. Environment is ready
+
+- Python: 3.13.1
+- Java: 21.0.8
+- PySpark: 4.1.1
+
+![Python, Java, Pyspark versions](./screenshots/01-python-java-pyspark-versions.png)
+
+---
+
 ### Step 1.4 — Create the requirements file
 
 ```
