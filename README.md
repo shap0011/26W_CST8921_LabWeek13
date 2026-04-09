@@ -110,6 +110,7 @@ python -c "import pyspark; print(pyspark.**version**)"
 
 ![Python, Pyspark versions](./screenshots/01-setup-python-pyspark.png)
 ![Java versions](./screenshots/02-java17-verification.png)
+![PySpark Downgrade](./screenshots/03-pyspark-downgrade.png)
 
 ---
 

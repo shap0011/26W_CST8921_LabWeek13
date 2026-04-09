@@ -1,1 +1,14 @@
 *.docx
+# Python
+.venv/
+__pycache__/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Azure / local storage
+__azurite_db_blob__.json
+__azurite_db_blob_extent__.json
+
+# Temp / test files
+spark_test.py
