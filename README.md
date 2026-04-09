@@ -161,9 +161,6 @@ Right-click in the Explorer panel → New File → name it etl_elt_lab.py.
 
 Copy the entire script below into etl_elt_lab.py:
 
-<details>
-    <summary>READ MORE
-
 ```
 import os
 from pyspark.sql import SparkSession
@@ -380,10 +377,6 @@ print("Lab complete. Answer the discussion questions in your writeup.")
 spark.stop()
 
 ```
-
-    </summary>
-
-</details>
 
 ---
 
