@@ -162,9 +162,9 @@ Right-click in the Explorer panel → New File → name it etl_elt_lab.py.
 Copy the entire script below into etl_elt_lab.py:
 
 <details>
-    <summary>
-        <p>
-        ```
+    <summary>READ MORE
+
+```
 import os
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as F
@@ -219,9 +219,9 @@ StructField("status", StringType(), True),
 
 raw_df = spark.createDataFrame(raw_data, schema)
 
-print("=" _ 55)
+print("=" * 55)
 print("RAW DATA (as extracted from source)")
-print("=" _ 55)
+print("=" * 55)
 raw_df.show()
 
 # ============================================================
@@ -230,9 +230,9 @@ raw_df.show()
 
 # ============================================================
 
-print("=" _ 55)
+print("=" * 55)
 print("PART 1: ETL — Transform BEFORE Load")
-print("=" _ 55)
+print("=" * 55)
 
 # ── Step 1: Extract ──────────────────────────────────────────
 
@@ -279,9 +279,9 @@ etl_result.orderBy("order_id").show()
 
 # ============================================================
 
-print("=" _ 55)
+print("=" * 55)
 print("PART 2: ELT — Load FIRST, Transform After")
-print("=" _ 55)
+print("=" * 55)
 
 # ── Step 1: Extract & Load raw ───────────────────────────────
 
@@ -346,9 +346,9 @@ category_summary.show()
 
 # ============================================================
 
-print("=" _ 55)
+print("=" * 55)
 print("PART 3: ETL vs ELT Output Comparison")
-print("=" _ 55)
+print("=" * 55)
 
 etl_sorted = etl_result.orderBy("order_id")
 elt_sorted = transformed_sql.orderBy("order_id")
@@ -360,9 +360,9 @@ print(f"ETL row count : {etl_count}")
 print(f"ELT row count : {elt_count}")
 
 if etl_count == elt_count:
-print("Row counts match.")
+    print("Row counts match.")
 else:
-print(" Row counts differ — investigate!")
+    print(" Row counts differ — investigate!")
 
 print("\nETL Schema:")
 etl_sorted.printSchema()
@@ -380,11 +380,10 @@ print("Lab complete. Answer the discussion questions in your writeup.")
 spark.stop()
 
 ```
-        </p>
+
     </summary>
+
 </details>
-
-
 
 ---
 
@@ -397,9 +396,7 @@ Press Ctrl+`` in VS Code. Make sure you see (venv) in the prompt. If not, re-act
 ### Step 3.2 — Run the script
 
 ```
-
 python etl_elt_lab.py
-
 ```
 
 ### Step 3.3 — What to expect
@@ -418,13 +415,11 @@ The first run takes 20–30 seconds while Spark initialises. Subsequent runs are
 In the VS Code Explorer, expand the data/ folder. You should see:
 
 ```
-
 data/
 ├── etl_output/
 │ └── orders_clean/ ← clean Parquet files (ETL)
 └── elt_output/
 └── orders_raw/ ← raw Parquet files (ELT)
-
 ```
 
 ---
@@ -440,4 +435,3 @@ Write your answers in a separate document and submit with your lab:
 5. Identify one real-world scenario where you would still prefer ETL over ELT.
 
 ---
-```
