@@ -214,9 +214,9 @@ StructField("status", StringType(), True),
 
 raw_df = spark.createDataFrame(raw_data, schema)
 
-print("=" _ 55)
+print("=" * 55)
 print("RAW DATA (as extracted from source)")
-print("=" _ 55)
+print("=" * 55)
 raw_df.show()
 
 # ============================================================
@@ -225,9 +225,9 @@ raw_df.show()
 
 # ============================================================
 
-print("=" _ 55)
+print("=" * 55)
 print("PART 1: ETL — Transform BEFORE Load")
-print("=" _ 55)
+print("=" * 55)
 
 # ── Step 1: Extract ──────────────────────────────────────────
 
@@ -274,9 +274,9 @@ etl_result.orderBy("order_id").show()
 
 # ============================================================
 
-print("=" _ 55)
+print("=" * 55)
 print("PART 2: ELT — Load FIRST, Transform After")
-print("=" _ 55)
+print("=" * 55)
 
 # ── Step 1: Extract & Load raw ───────────────────────────────
 
@@ -341,9 +341,9 @@ category_summary.show()
 
 # ============================================================
 
-print("=" _ 55)
+print("=" * 55)
 print("PART 3: ETL vs ELT Output Comparison")
-print("=" _ 55)
+print("=" * 55)
 
 etl_sorted = etl_result.orderBy("order_id")
 elt_sorted = transformed_sql.orderBy("order_id")
@@ -355,9 +355,9 @@ print(f"ETL row count : {etl_count}")
 print(f"ELT row count : {elt_count}")
 
 if etl_count == elt_count:
-print("Row counts match.")
+    print("Row counts match.")
 else:
-print(" Row counts differ — investigate!")
+    print(" Row counts differ — investigate!")
 
 print("\nETL Schema:")
 etl_sorted.printSchema()
@@ -370,11 +370,13 @@ etl_sorted.show(5)
 print("── ELT output ──")
 elt_sorted.show(5)
 
-print( Lab complete. Answer the discussion questions in your writeup.")
+print("Lab complete. Answer the discussion questions in your writeup.")
 
 spark.stop()
 
 ```
+
+![Working environment proof](./screenshots/02-working-environment-proof.png)
 
 ---
 
