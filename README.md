@@ -109,7 +109,7 @@ python -c "import pyspark; print(pyspark.**version**)"
 - PySpark: 4.1.1
 
 ![Python, Pyspark versions](./screenshots/01-setup-python-pyspark.png)
-![Java versions](./screenshots/02-java11-verification.png)
+![Java versions](./screenshots/02-java17-verification.png)
 
 ---
 
@@ -376,8 +376,6 @@ print("Lab complete. Answer the discussion questions in your writeup.")
 spark.stop()
 
 ```
-
-![Working environment proof](./screenshots/02-setup-python-pyspark.png)
 
 ---
 
