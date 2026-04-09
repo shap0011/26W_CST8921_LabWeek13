@@ -376,7 +376,7 @@ spark.stop()
 
 ```
 
-![Working environment proof](./screenshots/02-working-environment-proof.png)
+![Working environment proof](./screenshots/02-setup-python-pyspark.png)
 
 ---
 
