@@ -407,38 +407,38 @@ The first run takes 20–30 seconds while Spark initialises. Subsequent runs are
 
 ## The script transformed to simulate outputs
 
-**Raw Data Simulated**
+**Raw Data Simulated** \
 ![Raw Data Simulated](./screenshots/04-raw-data-simulated.png)
 
-**ETL Transformed Output**
+**ETL Transformed Output** \
 ![ETL Transformed Output](./screenshots/05-etl-transformed-output.png)
 
-**ELT Transformed Output**
+**ELT Transformed Output** \
 ![ELT Transformed Output](./screenshots/06-elt-transformed-output.png)
 
-**Category Summary**
+**Category Summary** \
 ![Category Summary](./screenshots/07-category-summary.png)
 
-**ETL vs ELT Comparison**
+**ETL vs ELT Comparison** \
 ![ETL vs ELT Comparison](./screenshots/08-etl-vs-elt-comparison.png)
 
 ---
 
 ## The script console output
 
-**Raw Data Simulated**
+**Raw Data Simulated** \
 ![Raw Data Simulated](./screenshots/09-raw-data-simulated.png)
 
-**ETL Transformed Output**
+**ETL Transformed Output** \
 ![ETL Transformed Output](./screenshots/10-ETL-transformed-output.png)
 
-**ELT Transformed Output**
+**ELT Transformed Output** \
 ![ELT Transformed Output](./screenshots/11-ELT-transformed-output.png)
 
-**Category Summary**
+**Category Summary** \
 ![Category Summary](./screenshots/12-category-summary.png)
 
-**ETL vs ELT Comparison**
+**ETL vs ELT Comparison** \
 ![ETL vs ELT Comparison](./screenshots/13-ETL-vs-ELT-comparison.png)
 
 ---
