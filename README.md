@@ -105,7 +105,7 @@ python -c "import pyspark; print(pyspark.**version**)"
 ## Checkpoint complete. Environment is ready
 
 - Python: 3.11.9
-- Java: 11.0.30
+- Java: 17.0.18
 - PySpark: 4.1.1
 
 ![Python, Pyspark versions](./screenshots/01-setup-python-pyspark.png)
