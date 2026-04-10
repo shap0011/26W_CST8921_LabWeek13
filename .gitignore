@@ -12,3 +12,4 @@ __azurite_db_blob_extent__.json
 
 # Temp / test files
 spark_test.py
+*.pdf
