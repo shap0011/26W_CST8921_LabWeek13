@@ -405,7 +405,11 @@ The first run takes 20–30 seconds while Spark initialises. Subsequent runs are
 
 ---
 
-## The script transformed to simulate outputs
+### Environment limitation note
+
+During testing, local PySpark execution on Windows failed with repeated Python worker connection reset errors. To complete the lab and still demonstrate understanding of ETL vs ELT, the script was adapted to simulate the expected transformed outputs instead of relying on successful Spark job execution.
+
+## Simulated script outputs
 
 **Raw Data Simulated** \
 ![Raw Data Simulated](./screenshots/04-raw-data-simulated.png)
@@ -424,7 +428,7 @@ The first run takes 20–30 seconds while Spark initialises. Subsequent runs are
 
 ---
 
-## The script console output
+## Full console run output
 
 **Raw Data Simulated** \
 ![Raw Data Simulated](./screenshots/09-raw-data-simulated.png)
@@ -441,30 +445,104 @@ The first run takes 20–30 seconds while Spark initialises. Subsequent runs are
 **ETL vs ELT Comparison** \
 ![ETL vs ELT Comparison](./screenshots/13-ETL-vs-ELT-comparison.png)
 
+Due to local Spark execution limitations on Windows, including repeated Python worker socket connection reset errors, the ETL and ELT transformations were validated conceptually using simulated output consistent with the expected results.
+
 ---
 
 ### Step 3.4 — Check the output files
 
-In the VS Code Explorer, expand the data/ folder. You should see:
+Under normal Spark execution, the script would write Parquet output to the `data/` folder:
 
-```
+```text
 data/
 ├── etl_output/
-│ └── orders_clean/ ← clean Parquet files (ETL)
+│ └── orders_clean/
 └── elt_output/
-└── orders_raw/ ← raw Parquet files (ELT)
+   └── orders_raw/
+
 ```
+
+However, on this Windows environment, local Spark jobs consistently failed with Python worker socket connection reset errors during execution. Because of this environment limitation, the lab was completed using simulated output in the console to demonstrate the ETL and ELT transformation logic.
+
+As a result, the expected Parquet output folders were not reliably generated and validated in this environment.
 
 ---
 
 ## Part 4 — Discussion Questions
 
-Write your answers in a separate document and submit with your lab:
+### 1. Both pipelines produced the same final output. What is the key architectural difference between them?
 
-1. Both pipelines produced the same final output. What is the key architectural difference between them?
-2. The ELT pipeline preserved the raw data in orders_raw. Why is this valuable when business requirements change?
-3. The ELT pipeline built a category_summary mart as a second SQL step without touching the ETL path. How does this demonstrate ELT's flexibility?
-4. If this dataset were 100 GB on a distributed Spark cluster, which approach would likely perform better and why?
-5. Identify one real-world scenario where you would still prefer ETL over ELT.
+The main architectural difference is **when the transformation occurs**.
+
+In the ETL pipeline, data is **transformed before it is loaded** into storage. This means the data is cleaned, formatted, and filtered first, and only then stored in the target system.
+
+In contrast, the ELT pipeline loads raw data first and performs transformations afterward using the processing capabilities of the target system (in this case, Spark SQL).
+
+Therefore:
+
+- **ETL = Transform → Load**
+- **ELT = Load → Transform**
+
+### 2. The ELT pipeline preserved the raw data in orders_raw. Why is this valuable when business requirements change?
+
+Preserving raw data in the `orders_raw` table is valuable because it allows for **flexibility and reusability**.
+
+If business requirements change (e.g., new metrics, filters, or aggregations), the raw data can be reused without needing to re-extract it from the original source.
+
+This means:
+
+- No data loss from early transformations
+- Ability to create new transformations later
+- Easier debugging and auditing
+
+ELT supports **schema evolution and future analytics needs** more effectively than ETL.
+
+### 3. The ELT pipeline built a category_summary mart as a second SQL step without touching the ETL path. How does this demonstrate ELT's flexibility?
+
+The ELT pipeline demonstrates flexibility because it allows multiple transformations to be built on top of the same raw dataset.
+
+In this lab, the `category_summary` mart was created using a second SQL query **without modifying the original transformation logic**.
+
+This shows that:
+
+- New data products can be created easily
+- Transformations are modular and reusable
+- There is no need to rebuild or reload data
+
+This flexibility is a key advantage of ELT in modern data platforms.
+
+### 4. If this dataset were 100 GB on a distributed Spark cluster, which approach would likely perform better and why?
+
+For large datasets (e.g., 100 GB on a distributed Spark cluster), **ELT would likely perform better**.
+
+This is because ELT leverages the distributed processing power of the data platform (Spark), allowing transformations to run in parallel across multiple nodes.
+
+Advantages of ELT in this scenario:
+
+- Better scalability
+- Parallel processing
+- Reduced data movement
+
+In contrast, ETL may require transforming data before loading, which can become a bottleneck for large-scale data.
+
+### 5. Identify one real-world scenario where you would still prefer ETL over ELT.
+
+ETL is preferred in situations where **data must be cleaned or secured before storage**.
+
+Example:
+
+In a **healthcare system**, sensitive patient data may need to be:
+
+- anonymized
+- validated
+- filtered
+
+before being stored in a data warehouse.
+
+In this case, ETL is important because:
+
+- It enforces data quality early
+- It protects sensitive information
+- It ensures compliance with regulations (e.g., HIPAA)
 
 ---
